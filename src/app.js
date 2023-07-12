@@ -26,10 +26,14 @@ let windElement = document.querySelector("#wind");
 windElement.innerHTML = Math.round(response.data.wind.speed);
 let dateElement = document.querySelector("#date");
 dateElement.innerHTML = formatDate(response.data.time * 1000);
+let iconElement = document.querySelector("#icon");
+iconElement.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
+iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 let apiKey = "343956b42t678f23abfoa30906bf4370";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=London&key=343956b42t678f23abfoa30906bf4370&units=metric`;
+let city = "Seoul";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayTemperature);
 
